@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const errorMiddleware = require("./middlewares/errorMiddleware");
 require("dotenv").config();
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 8080;
 const baseUrl = "/api/v1";
 
 //Required middlewares
+app.use(cors())
 app.use(express.json());
 app.use(morgan("dev"));
 

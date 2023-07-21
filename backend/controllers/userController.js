@@ -4,8 +4,9 @@ const validationErrors = require("../utils/validationErrors");
 //GET method to return all users
 exports.getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find();
-    return res.status(200).json({ users });
+    const users = await User.find().sort({_id: -1});
+    const total = await User.countDocuments();
+    return res.status(200).json({ total, users });
   } catch (err) {
     next(err);
   }
@@ -15,6 +16,7 @@ exports.getAllUsers = async (req, res, next) => {
 exports.getSingleUser = async (req, res, next) => {
   try {
     const existingUser = await User.findById(req.params.id);
+    
     if (!existingUser) {
       return res.status(404).json({ msg: "User with given id doesn't exist." });
     }
@@ -33,22 +35,22 @@ exports.createUser = async (req, res, next) => {
 
   try {
     const { name, email, age } = req.body;
-    await User.create({ name, email, age });
-    return res.status(200).json({ msg: "User created successfully!" });
+    const createdUser = await User.create({ name, email, age });
+    return res.status(200).json({ msg: "User created successfully!", createdUser });
   } catch (err) {
     next(err);
   }
 };
 
 //PUT method to update an existing user with given id
-exports.updateUser = (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   if (validationErrors(req, res)) {
     return 
   }
-  
+
   try {
     const { name, email, age } = req.body;
-    const updatedUser = User.findByIdAndUpdate(req.params.id, {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, {
       name,
       email,
       age,
@@ -58,7 +60,7 @@ exports.updateUser = (req, res, next) => {
       return res.status(404).json({ msg: "User with given id doesn't exist." });
     }
 
-    return res.status(200).json({ msg: "User updated successfully!" });
+    return res.status(200).json({ msg: "User updated successfully!", updatedUser });
   } catch (err) {
     next(err);
   }
@@ -68,6 +70,7 @@ exports.updateUser = (req, res, next) => {
 exports.deleteUser = async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
+
     if (!deletedUser) {
       return res.status(404).json({ msg: "User with given id doesn't exist." });
     }
