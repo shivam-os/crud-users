@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8080;
 const baseUrl = "/api/v1";
 
 //Required middlewares
-app.use(cors())
+app.use(cors({ origin: process.env.FRONTEND_URL }));
 app.use(express.json());
 app.use(morgan("dev"));
 
