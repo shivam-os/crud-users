@@ -58,6 +58,7 @@ export default function CreateUser(props) {
             onChange={(e) => setName(e.target.value)}
             value={name}
             size="lg"
+            pattern="[A-Za-z ]*"
           />
         </Form.Group>
 
@@ -77,7 +78,7 @@ export default function CreateUser(props) {
           <Form.Label>Age</Form.Label>
           <Form.Control
             type="number"
-            min="0"
+            min="1"
             max="130"
             required
             placeholder="Ex. 28"

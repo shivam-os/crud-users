@@ -28,11 +28,11 @@ function App() {
         />
         <Route
           path="/user/new"
-          element={<CreateUser users={users}/>}
+          element={<CreateUser setUsers={setUsers}/>}
         />
         <Route
           path="/user/:id"
-          element={<UpdateUser users={users}/>}
+          element={<UpdateUser setUsers={setUsers}/>}
         />
       </Routes>
       <Footer />
