@@ -5,7 +5,7 @@ To install nodejs, go to: [Node.js official website](https://nodejs.dev/en/)
 
 ### To run the app:
 <ol>
-  <li>Download the repository on the local machine./li>
+  <li>Download the repository on the local machine.</li>
   <li>Open the backend folder in terminal and write: npm install</li>
   <li>Now, create a .env file in the backend folder.</li/>
   <li>In this file, add 3 variables: MONGO_URL, PORT, FRONTEND_URL</li>
@@ -21,5 +21,5 @@ To install nodejs, go to: [Node.js official website](https://nodejs.dev/en/)
   <li>MONGO_URL: This represents the mongodb url. It can be local to your machine or the mongodb atlas url.</li>
   <li>PORT: This represents the port where you want to run your app.</li>
   <li>FRONTEND_URL: This represents the url where the react app is running on your machine. Generally, it's: http://localhost:3000 </li>
-  <li>REACT_APP_SERVER_URL: This represents the url where the backend app is running on your machine. It will be in this format: http://localhost:<YOUR_PORT_NO>/api/v1</li>
+  <li>REACT_APP_SERVER_URL: This represents the url where the backend app is running on your machine. It will be in this format: http://localhost:PORT_NO/api/v1</li>
 </ol>
